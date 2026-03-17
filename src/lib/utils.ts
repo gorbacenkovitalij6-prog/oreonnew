@@ -7,7 +7,7 @@ export function cn(...inputs: ClassValue[]) {
 }
 
 export const trackEvent = (eventName: string) => {
-  if (typeof window !== 'undefined' && (window as any).ym && siteConfig.yandexMetricaId) {
-    (window as any).ym(siteConfig.yandexMetricaId, 'reachGoal', eventName);
+  if (typeof window !== 'undefined' && typeof (window as unknown as { ym?: Function }).ym === 'function' && siteConfig.yandexMetricaId) {
+    (window as unknown as { ym: Function }).ym(siteConfig.yandexMetricaId, 'reachGoal', eventName);
   }
 };
